@@ -7,12 +7,12 @@ import java.util.Locale;
 
 public class MoodAnalyzerTest {
     @Test
-    public void result()
+    public void analyzemood()
     {
         MoodAnalyzerOne MoodAnalyzer = new MoodAnalyzerOne();
-        String result = MoodAnalyzer.mood("i am Sad".toLowerCase());
-        Assert.assertEquals(result, "Sad");
-    } 
+        String result = MoodAnalyzer.mood("i am in any mood".toLowerCase());
+        Assert.assertEquals(result, "Happy");
+    }
 
 }
 
