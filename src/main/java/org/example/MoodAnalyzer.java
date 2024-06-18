@@ -18,18 +18,14 @@ public class MoodAnalyzer {
     }
 
     public String analyzeMood() throws MoodAnalyzerException {
-        try {
-            if (msg.isEmpty()) {
-                throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.EMPTY, "Enter Input");
-            }
-
+        try{
             if (msg.contains("sad")) {
                 return "SAD";
             } else {
                 return "HAPPY";
             }
         } catch (NullPointerException e) {
-            throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.NULL, "Enter a valid Input");
+            throw new MoodAnalyzerException("Enter a valid Input");
         }
     }
 }
