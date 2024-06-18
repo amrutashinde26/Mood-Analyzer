@@ -1,5 +1,7 @@
 
-import org.example.MoodAnalyzerOne;
+import org.example.MoodAnalyzer;
+import org.example.MoodAnalyzerException;
+/*import org.example.MoodAnalyzerOne;*/
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -7,28 +9,42 @@ import java.util.Locale;
 
 public class MoodAnalyzerTest {
     @Test
-    public void analyzemood()
-    {
-        MoodAnalyzerOne MoodAnalyzer = new MoodAnalyzerOne("i am in any mood".toLowerCase());
-        String result = MoodAnalyzer.mood();
-        Assert.assertEquals(result, "Happy");
+    public void analyzeMood() throws MoodAnalyzerException {
+        MoodAnalyzer moodAnalyzer1 = new MoodAnalyzer("I am in Sad mood".toLowerCase());
+        String mood = moodAnalyzer1.analyzeMood();
+        Assert.assertEquals(mood,"SAD");
     }
 
     @Test
-    public void analyzem() 
-    {
-        MoodAnalyzerOne MoodAnalyzer = new MoodAnalyzerOne("i am in sad mood".toLowerCase());
-        String result = MoodAnalyzer.mood();
-        Assert.assertEquals(result, "Sad");
+    public void analyzeHappyMood() throws MoodAnalyzerException {
+        MoodAnalyzer moodAnalyzer2 = new MoodAnalyzer("I am in Any mood".toLowerCase());
+        String mood = moodAnalyzer2.analyzeMood();
+        Assert.assertEquals(mood,"HAPPY");
+    }
+
+
+    @Test
+    public void analyzeNullMood() throws MoodAnalyzerException {
+        MoodAnalyzer moodAnalyzer3 = new MoodAnalyzer(null);
+
+        try {
+            moodAnalyzer3.analyzeMood(null);
+        } catch (MoodAnalyzerException e) {
+            Assert.assertEquals(MoodAnalyzerException.ExceptionType.NULL,e.type);
+        }
     }
 
     @Test
-    public  void checkmood()
-    {
-        MoodAnalyzerOne MoodAnalyzer2 = new MoodAnalyzerOne(null);
-        String result = MoodAnalyzer2.mood();
-        Assert.assertEquals(result, "INVALID");
+    public void analyzeEmptyMood() throws MoodAnalyzerException {
+        MoodAnalyzer moodAnalyzer4 = new MoodAnalyzer(" ");
+
+        try {
+            moodAnalyzer4.analyzeMood(" ");
+        } catch (MoodAnalyzerException e) {
+            Assert.assertEquals(MoodAnalyzerException.ExceptionType.EMPTY,e.type);
+        }
     }
+    
 
 }
 
