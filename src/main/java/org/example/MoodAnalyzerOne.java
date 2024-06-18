@@ -21,7 +21,7 @@ public MoodAnalyzerOne(String message)
                 }
             } catch (NullPointerException e)
             {
-                return  "INVALID";
+                return  "Happy"; 
             }
         }
     }
